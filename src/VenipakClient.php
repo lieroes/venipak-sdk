@@ -2,8 +2,11 @@
 
 namespace VenipakSDK;
 
+use Exception;
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Support\Facades\Log;
+use RuntimeException;
 
 class VenipakClient
 {
@@ -37,7 +40,7 @@ class VenipakClient
                 'error' => $e->getMessage(),
             ]);
 
-            throw new \RuntimeException('API request failed: ' . $e->getMessage());
+            throw new RuntimeException('API request failed: ' . $e->getMessage());
         }
     }
 
@@ -94,5 +97,26 @@ class VenipakClient
             'shipment_id' => $shipmentId,
             'status'      => $status,
         ]);
+    }
+
+    /**
+     * Fetch the list of pickup points from the API.
+     *
+     * @return array
+     * @throws Exception|GuzzleException
+     */
+    public function getPickupPoints(): array
+    {
+        $response = $this->httpClient->request('GET', "{$this->baseUrl}/pickup-points", [
+            'headers' => [
+                'Authorization' => "Bearer {$this->apiKey}",
+            ],
+        ]);
+
+        if ($response->getStatusCode() !== 200) {
+            throw new Exception('Failed to fetch pickup points.');
+        }
+
+        return json_decode($response->getBody(), true);
     }
 }

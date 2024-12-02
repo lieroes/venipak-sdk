@@ -3,6 +3,7 @@
 namespace VenipakSDK;
 
 use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Log;
 
 class VenipakClient
 {
@@ -73,34 +74,11 @@ class VenipakClient
         return hash_equals($computedSignature, $signature);
     }
 
-    // Webhook Utilities
-
-    public function verifyWebhookSignature(string $payload, string $signature, string $secret): bool
-    {
-        $computedSignature = hash_hmac('sha256', $payload, $secret);
-        return hash_equals($computedSignature, $signature);
-    }
-
     public function handleWebhook(array $data): array
     {
         // Process the webhook payload
         // Example: Parse shipment status update
         return $data; // Return parsed data or status
-    }
-
-    // Status Updates
-
-    public function getShipmentStatus(string $shipmentId)
-    {
-        return $this->makeRequest("shipment/status/{$shipmentId}", [], 'GET');
-    }
-
-    public function updateShipmentStatus(string $shipmentId, string $status)
-    {
-        return $this->makeRequest("shipment/status/update", [
-            'shipment_id' => $shipmentId,
-            'status'      => $status,
-        ]);
     }
 
     // Status Updates

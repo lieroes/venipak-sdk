@@ -8,16 +8,20 @@ class VenipakServiceProvider extends ServiceProvider
 {
     public function register()
     {
+        // Bind the VenipakClient to the service container
         $this->app->singleton(VenipakClient::class, function ($app) {
-            $config = config('venipak');
-            return new VenipakClient($config['base_url'], $config['api_key']);
+            return new VenipakClient(
+                config('venipak.base_url'),
+                config('venipak.api_key')
+            );
         });
     }
 
     public function boot()
     {
+        // Publish configuration file
         $this->publishes([
-            __DIR__.'/config/venipak.php' => config_path('venipak.php'),
-        ]);
+            __DIR__.'/../config/venipak.php' => config_path('venipak.php'),
+        ], 'config');
     }
 }

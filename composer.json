@@ -2,6 +2,14 @@
     "name": "lieroes/venipak-sdk",
     "description": "Venipak SDK for Laravel",
     "type": "library",
+    "license": "MIT",
+    "keywords": ["php", "delivery", "venipak"],
+    "authors": [
+        {
+            "name": "Olegs Davidovs",
+            "email": "davidovs.olegs@gmail.com",
+        }
+    ],
     "require": {
         "guzzlehttp/guzzle": "^7.0"
     },

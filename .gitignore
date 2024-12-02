@@ -1,0 +1,44 @@
+# Ignore IDE and editor files
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# Ignore Composer dependencies
+/vendor/
+composer.lock
+
+# Ignore PHPUnit test results
+.phpunit.result.cache
+
+# Ignore coverage reports
+coverage/
+*.coverage
+*.clover
+
+# Ignore system files
+.DS_Store
+Thumbs.db
+*.swp
+*.bak
+*.tmp
+*.old
+
+# Exclude build artifacts
+/build/
+dist/
+*.tar
+*.zip
+
+# Ignore logs and temporary files
+logs/
+*.log
+*.cache
+
+# Ignore PHPStorm configuration
+/.phpstorm.meta.php
+
+# Exclude unnecessary export files
+export/
+*.sql
+*.csv

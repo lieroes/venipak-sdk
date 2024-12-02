@@ -1,0 +1,23 @@
+{
+    "name": "lieroes/venipak-sdk",
+    "description": "Venipak SDK for Laravel",
+    "type": "library",
+    "require": {
+        "guzzlehttp/guzzle": "^7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "VenipakSDK\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "VenipakSDK\\VenipakServiceProvider"
+            ],
+            "aliases": {
+                "Venipak": "VenipakSDK\\Facades\\Venipak"
+            }
+        }
+    }
+}
